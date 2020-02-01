@@ -11,6 +11,7 @@ from .plot_utils import (
     get_plotting_function,
 )
 from ..utils import _var_names
+from ..rcparams import rcParams
 
 
 def plot_posterior(
@@ -19,7 +20,7 @@ def plot_posterior(
     coords=None,
     figsize=None,
     textsize=None,
-    credible_interval=0.94,
+    credible_interval=None,
     multimodal=False,
     round_to: Optional[int] = None,
     point_estimate="auto",
@@ -180,6 +181,17 @@ def plot_posterior(
 
     if coords is None:
         coords = {}
+
+    if credible_interval is None:
+        credible_interval = rcParams["stats.credible_interval"]
+    else:
+        if not 1 >= credible_interval > 0:
+            raise ValueError("The value of credible_interval should be in the interval (0, 1]")
+
+    if point_estimate == "auto":
+        point_estimate = rcParams["plot.point_estimate"]
+    elif point_estimate not in {"mean", "median", "mode", None}:
+        raise ValueError("The value of point_estimate must be either mean, median, mode or None.")
 
     plotters = filter_plotters_list(
         list(xarray_var_iter(get_coords(data, coords), var_names=var_names, combined=True)),

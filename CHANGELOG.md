@@ -3,19 +3,32 @@
 ## v0.x.x Unreleased
 
 ### New features
-
+* Add out-of-sample predictions (`predictions` and  `predictions_constant_data` groups) to pymc3 and pystan translations (#983 and #1032)
+* Started adding pointwise log likelihood storage support (#794)
+* Violinplot: rug-plot option (#997)
+* Integrated rcParams `plot.point_estimate` (#994), `stats.ic_scale` (#993) and `stats.credible_interval` (#1017)
+* Added `group` argument to `plot_ppc` (#1008), `plot_pair` (#1009) and `plot_joint` (#1012)
 
 ### Maintenance and fixes
-* Fixed bug in extracting prior samples for cmdstanpy. (#979) 
+* Fixed bug in extracting prior samples for cmdstanpy (#979)
 * Fix erroneous warning in traceplot (#989)
 * Correct bfmi denominator (#991)
 * Removed parallel from jit full (#996)
-* Rename flat_inference_data_to_dict (#1003) 
+* Rename flat_inference_data_to_dict (#1003)
+* Violinplot: fix histogram (#997)
+* Convert all instances of SyntaxWarning to UserWarning (#1016)
+* Fix `point_estimate` in `plot_posterior` (#1038)
 
 ### Deprecation
 
 ### Documentation
-*  Clarify the usage of "plot_joint" (#1001) 
+* Updated `InferenceData` schema specification (`log_likelihood`,
+  `predictions` and `predictions_constant_data` groups)
+*  Clarify the usage of "plot_joint" (#1001)
+*  Added the API link of function to examples (#1013)
+* Clarify the usage of "plot_joint" (#1001)
+* Added the API link of function to examples (#1013)
+* Updated PyStan_schema_example to include example of out-of-sample prediction (#1032)
 
 
 ## v0.6.1 (2019 Dec 28)
@@ -23,7 +36,7 @@
 ### New features
 * Update for pair_plot divergences can be selected
 * Default tools follow global (ArviZ) defaults
-* Add interactive legend for a plot, if only two variables are used in pairplot.
+* Add interactive legend for a plot, if only two variables are used in pairplot
 
 ### Maintenance and fixes
 * Change `packaging` import from absolute to relative format, explicitly importing `version` function
@@ -132,7 +145,7 @@
 * And exception to plot compare ([#461](https://github.com/arviz-devs/arviz/pull/461))
 * Add Docker Testing to travisCI ([#473](https://github.com/arviz-devs/arviz/pull/473))
 * fix jointplot warning ([#478](https://github.com/arviz-devs/arviz/pull/478))
-* Fix tensorflow import bug ([#489](https://github.com/arviz-devs/arviz/pull/489)) 
+* Fix tensorflow import bug ([#489](https://github.com/arviz-devs/arviz/pull/489))
 * Rename N_effective to S_effective ([#505](https://github.com/arviz-devs/arviz/pull/505))
 
 
